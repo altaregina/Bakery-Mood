@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width,initial-scale=1" name="viewport">
+  <meta content="description" name="description">
+  <meta name="google" content="notranslate" />
+  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link href="./assets/apple-icon-180x180.png" rel="apple-touch-icon">
+  <link href="./assets/favicon.ico" rel="icon">
+
+  <title>BAKERY MOOD - Payments</title>
+  <link href="./main.82cfd66e.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-group button:hover {
+      background-color: #0056b3;
+    }
+
+    .address-container {
+      list-style: none;
+      padding: 0;
+    }
+
+    .address-container li {
+      margin-bottom: 10px;
+    }
+
+    .fa-icon {
+      margin-right: 10px;
+    }
+
+    .delivery-option {
+      margin-top: 10px;
+    }
+
+    .total-section {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e9ecef;
+      border-radius: 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="">
+    <div class="navbar navbar-default visible-xs">
+      <button type="button" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="./index.html" class="navbar-brand">BAKERY MOOD</a>
+    </div>
+
+    <nav class="sidebar">
+      <div class="navbar-collapse" id="navbar-collapse">
+        <div class="site-header hidden-xs">
+          <a class="site-brand" href="./index.html" title="">
+            <img class="img-responsive site-logo" alt="" src="./assets/images/mashup-logo.svg">
+            BAKERY MOOD
+          </a>
+          <p>Sajikan kebahagiaan dalam setiap gigitan dengan kue ulang tahun spesial kami!</p>
+        </div>
+        <ul class="nav">
+          <li><a href="./index.html" title="">Home</a></li>
+          <li><a href="./about.html" title="">About</a></li>
+          <li><a href="./services.html" title="">Services</a></li>
+          <li><a href="./payments.html" title="">Payments</a></li>
+        </ul>
+
+        <nav class="nav-footer">
+          <p class="nav-footer-social-buttons">
+            <a class="fa-icon" href="https://www.instagram.com/bakerymoodd?igsh=MTFzd2k2Y3I2azlsdg==" title="">
+              <i class="fa fa-instagram"></i>
+            </a>
+            <a class="fa-icon" href="https://twitter.com/" title="">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </p>
+        </nav>
+      </div>
+    </nav>
+  </header>
+  <main class="" id="main-collapse">
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="section-container-spacer">
+          <h1>Payments</h1>
+          <p>Silakan isi formulir di bawah ini untuk melakukan pemesanan dan pembayaran.</p>
+        </div>
+        <div class="form-container">
+          <form id="payment-form" method="POST">
+            <!-- Data Diri Pembeli -->
+            <div class="form-group">
+              <label for="customer_name">Nama:</label>
+              <input type="text" id="customer_name" name="customer_name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone_number">No. Telepon:</label>
+              <input type="text" id="phone_number" name="phone_number" required>
+            </div>
+
+            <!-- Detail Pesanan -->
+            <div class="form-group">
+              <label for="cake_name">Nama Kue:</label>
+              <input type="text" id="cake_name" name="cake_name" required readonly>
+            </div>
+            <div class="form-group">
+              <label for="cake_price">Harga Kue:</label>
+              <input type="number" id="cake_price" name="cake_price" required readonly>
+            </div>
+            <div class="form-group">
+              <label for="pickup_date">Tanggal Pickup:</label>
+              <input type="date" id="pickup_date" name="pickup_date" required>
+            </div>
+
+            <!-- Opsi Pengiriman -->
+            <div class="form-group">
+              <label>Opsi Pengiriman:</label>
+              <div class="delivery-option">
+                <label>
+                  <input type="radio" name="delivery_option" value="pickup" checked> Pickup (Tanpa Biaya Tambahan)
+                </label>
+              </div>
+              <div class="delivery-option">
+                <label>
+                  <input type="radio" name="delivery_option" value="delivery"> Delivery (Dengan Biaya Tambahan)
+                </label>
+              </div>
+            </div>
+
+            <!-- Input Alamat (Muncul jika Delivery dipilih) -->
+            <div class="form-group hidden" id="address-field">
+              <label for="delivery_address">Alamat Pengiriman:</label>
+              <textarea id="delivery_address" name="delivery_address"></textarea>
+            </div>
+
+            <!-- Total Transaksi -->
+            <div class="total-section">
+              <div class="form-group">
+                <label for="delivery_fee">Biaya Pengiriman:</label>
+                <input type="number" id="delivery_fee" name="delivery_fee" value="0" readonly>
+              </div>
+              <div class="form-group">
+                <label for="total_payment">Total Pembayaran:</label>
+                <input type="number" id="total_payment" name="total_payment" readonly>
+              </div>
+            </div>
+
+            <!-- Pembayaran -->
+            <div class="form-group">
+              <label for="bank_destination">Bank Tujuan:</label>
+              <select id="bank_destination" name="bank_destination" required>
+                <option value="BCA">BCA</option>
+                <option value="BRI">BRI</option>
+                <option value="BNI">BNI</option>
+              </select>
+            </div>
+            <p>Silakan transfer ke rekening berikut:</p>
+            <ul class="address-container">
+              <li><strong>BCA:</strong> 123-456-789 (Name: Example A)</li>
+              <li><strong>BRI:</strong> 987-654-321 (Name: Example B)</li>
+              <li><strong>BNI:</strong> 456-123-789 (Name: Example C)</li>
+            </ul>
+
+            <button type="submit" class="btn btn-primary btn-lg">Submit Payment</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+      navbarToggleSidebar();
+      navActivePage();
+    });
+
+    // Ambil data kue dari URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const cakeName = urlParams.get('cake');
+    const cakePrice = urlParams.get('price');
+
+    // Isi data kue ke form
+    document.getElementById('cake_name').value = cakeName;
+    document.getElementById('cake_price').value = cakePrice;
+
+    // Hitung total pembayaran
+    function calculateTotal() {
+      const cakePrice = parseFloat(document.getElementById('cake_price').value) || 0;
+      const deliveryFee = parseFloat(document.getElementById('delivery_fee').value) || 0;
+      document.getElementById('total_payment').value = cakePrice + deliveryFee;
+    }
+
+    // Tampilkan/sembunyikan input alamat berdasarkan opsi pengiriman
+    document.querySelectorAll('input[name="delivery_option"]').forEach((radio) => {
+      radio.addEventListener('change', function () {
+        if (this.value === 'delivery') {
+          document.getElementById('address-field').classList.remove('hidden');
+          document.getElementById('delivery_fee').value = 20000; // Biaya delivery Rp 20.000
+        } else {
+          document.getElementById('address-field').classList.add('hidden');
+          document.getElementById('delivery_fee').value = 0; // Biaya delivery Rp 0
+        }
+        calculateTotal();
+      });
+    });
+
+    // Hitung total pembayaran saat halaman dimuat
+    calculateTotal();
+
+    // AJAX untuk mengirim data form ke server
+    document.getElementById('payment-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+
+      fetch('contact_action.php', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            alert(data.message); // Notifikasi pesanan berhasil
+            window.location.href = 'index.html'; // Redirect ke halaman utama
+          } else {
+            alert(data.message); // Notifikasi pesanan gagal
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Terjadi kesalahan saat mengirim data.'); // Notifikasi error
+        });
+    });
+  </script>
+
+  <script type="text/javascript" src="./main.85741bff.js"></script>
+</body>
+
+</html>

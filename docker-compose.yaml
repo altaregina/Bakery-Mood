@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  app-db:
+    image: mysql:8.4-oracle
+    hostname: pbo-7.gunadarma.local
+    expose:
+      - 3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: r00tP4ssw0rD
+  db-adminer:
+    image: adminer:4.8.1
+    ports:
+      - 8080:8080
+  app-web:
+    image: pbo-7:php-8.3-apache
+    build:
+      dockerfile_inline: |
+        FROM php:8.3-apache
+        RUN docker-php-ext-install mysqli pdo pdo_mysql \
+        && docker-php-ext-enable pdo_mysql
+    ports:
+      - 80:80
+    depends_on:
+      - app-db
+    volumes:
+      - ./web:/var/www/html
+
+volumes:
+  mysql-data:
